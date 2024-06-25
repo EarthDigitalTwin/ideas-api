@@ -1,0 +1,60 @@
+{
+  "processID": "string",
+  "type": "process",
+  "jobID": "<generated UUID>",
+  "status": "accepted | running | successful | failed | dismissed",
+  "message": "error message. ",
+  "created": "2023-03-20T16:35:51.090Z // job created time",
+  "started": "2023-03-20T16:35:51.090Z // time when stage 1 started",
+  "finished": "2023-03-20T16:35:51.090Z  // finished time. success or failure",
+  "updated": "2023-03-20T16:35:51.090Z  // latest job updated time",
+  "progress": 50,
+  "inputs": {
+    "executingStageFlags": [
+      false,
+      true
+    ],
+    "stagedResults": [
+      {
+        "name": "POWER__DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "LIS__DATA",
+        "value": "s3://<bucket>/<key>"
+      }
+    ],
+    "scenario": "1x or 2x or 3x",
+    "hydroModel": "VIC or NOAH",
+    "basinId": 23,
+    "precipitationType": "CHIRPS or MERRA2 or IMERG",
+    "landSurfaceModel": "VIC or NOAH or CLSM or LIS",
+    "spatialResolution": "1",
+    "startTime": "2023-01-30T00:00:00+00:00",
+    "endTime": "2023-01-31T00:00:00+00:00",
+    "spatialCoverage": {
+      "bbox": [
+        -180.0,
+        -90.0,
+        180.0,
+        90.0
+      ]
+    }
+  },
+  "outputs": {
+    "processResults": [
+      {
+        "name": "LIS__DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "LIS__METADATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "LIS__ANCILLARY",
+        "value": "s3://<bucket>/<key>"
+      }
+    ]
+  }
+}

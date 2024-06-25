@@ -1,0 +1,12 @@
+{
+  "processID": "IDEAS:API-1",
+  "type": "process",
+  "jobID": "<generated UUID>",
+  "status": "accepted",
+  "message": "string",
+  "created": "2023-03-20T16:46:54.616Z",
+  "started": "2023-03-20T16:46:54.616Z",
+  "finished": "2023-03-20T16:46:54.616Z",
+  "updated": "2023-03-20T16:46:54.616Z",
+  "progress": 0
+}

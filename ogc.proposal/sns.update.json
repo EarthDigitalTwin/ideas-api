@@ -1,0 +1,7 @@
+{
+    "messageType": "UPDATE",
+    "jobID": "<generated UUID>",
+    "status": "RUNNING",
+    "stage": "RRR",
+    "message": "(optional). some details"
+}

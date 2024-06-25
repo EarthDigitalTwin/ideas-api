@@ -1,0 +1,133 @@
+---
+swagger: "2.0"
+info:
+  version: "2023-06-27T23:23:03Z"
+  title: "IdeasAPI"
+host: "<api-gateway-API-ID>.execute-api.<REGION>.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+paths:
+  /jobs:
+    get:
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+  /jobs/{jobid}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "jobid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+  /jobs/{jobid}/results:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "jobid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+  /processes:
+    get:
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+    put:
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+  /processes/{id}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+  /processes/{id}/execution:
+    post:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - Ideas: []
+securityDefinitions:
+  Ideas:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    x-amazon-apigateway-authtype: "cognito_user_pools"
+definitions:
+  Empty:
+    type: "object"
+    title: "Empty Schema"
+x-amazon-apigateway-policy:
+  Version: "2012-10-17"
+  Statement:
+  - Effect: "Allow"
+    Principal: "*"
+    Action: "execute-api:Invoke"
+    Resource: "arn:aws:execute-api:<REGION>:<ACCOUNT-ID>:<API-GATEWAY-API-ID>/*"
+  - Effect: "Deny"
+    Principal: "*"
+    Action: "execute-api:Invoke"
+    Resource: "arn:aws:execute-api:<REGION>:<ACCOUNT-ID>:<API-GATEWAY-API-ID>/*"
+    Condition:
+      NotIpAddress:
+        aws:SourceIp:
+        - "128.149.0.0/16"
+        - "137.78.0.0/16"
+        - "137.79.0.0/16"

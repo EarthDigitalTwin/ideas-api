@@ -1,0 +1,41 @@
+{
+  "messageType": "REQUEST",
+  "jobID": "<generated UUID>",
+  "stage": "LIS",
+  "inputs": {
+    "stagedResults": [
+      {
+        "name": "POWER__DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "LIS__DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "RRR__DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "RRR__METADATA",
+        "value": "s3://<bucket>/<key>"
+      }
+    ],
+    "scenario": "1x or 2x or 3x",
+    "hydroModel": "VIC or NOAH",
+    "basinId": 23,
+    "precipitationType": "CHIRPS or MERRA2 or IMERG",
+    "landSurfaceModel": "VIC or NOAH or CLSM or LIS",
+    "spatialResolution": "1",
+    "startTime": "2023-01-30T00:00:00+00:00",
+    "endTime": "2023-01-31T00:00:00+00:00",
+    "spatialCoverage": {
+      "bbox": [
+        -180.0,
+        -90.0,
+        180.0,
+        90.0
+      ]
+    }
+  }
+}

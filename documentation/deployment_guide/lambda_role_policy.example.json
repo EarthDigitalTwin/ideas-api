@@ -1,0 +1,50 @@
+{
+    "Statement": [
+        {
+            "Action": [
+                "sns:Publish"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:sns:<REGION>:<ACCOUNT-ID>:ideas-*"
+        },
+        {
+            "Action": [
+                "sqs:SendMessage",
+                "sqs:ReceiveMessage",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:sqs:<REGION>:<ACCOUNT-ID>:ideas-*"
+            ]
+        },
+        {
+            "Action": [
+                "lambda:InvokeFunction"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:lambda:<REGION>:<ACCOUNT-ID>:function:*"
+        },
+        {
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectAttributes",
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::aq-in-situ-data",
+                "arn:aws:s3:::aq-in-situ-data/*"
+            ]
+        },
+        {
+            "Action": [
+                "es:ESHttp*"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:es:<REGION>:<ACCOUNT-ID>:domain/ideas-api-dev-1/*"
+        }
+    ],
+    "Version": "2012-10-17"
+}

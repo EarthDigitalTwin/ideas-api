@@ -1,0 +1,21 @@
+{
+  "messageType": "RESULT",
+  "jobID": "<generated UUID>",
+  "status": "SUCCESSFUL",
+  "stage": "LIS",
+  "message": "(Optional). If failed, might want to add the detailed exception here. ",
+  "outputs": [
+      {
+        "name": "DATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "METADATA",
+        "value": "s3://<bucket>/<key>"
+      },
+      {
+        "name": "ANCILLARY",
+        "value": "s3://<bucket>/<key>"
+      }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "processID": "IDEAS:API-1",
+  "type": "process",
+  "jobID": "<generated UUID>",
+  "status": "accepted",
+  "message": "error or update message. example: Queued for stage: LIS | Running stage: LIS (last Updated: <datetime>) | Error during stage: LIS. details: <error message>. | Job is finished",
+  "created": "2023-03-20T16:35:51.090Z",
+  "started": "2023-03-20T16:35:51.090Z",
+  "finished": "2023-03-20T16:35:51.090Z",
+  "updated": "2023-03-20T16:35:51.090Z",
+  "progress": 61
+}

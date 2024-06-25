@@ -1,0 +1,10 @@
+{
+  "processes": [
+    {
+      "id": "IDEAS:API-1",
+      "title": "Process Title",
+      "description": "Process Description for LIS and RRR + Rapid. Ref: https://github.com/opengeospatial/ogcapi-processes/blob/master/core/examples/json/ProcessDescription.json",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "id": "IDEAS:API-1",
+  "title": "Process Title",
+  "description": "Process Description for LIS and RRR + Rapid. Ref: https://github.com/opengeospatial/ogcapi-processes/blob/master/core/examples/json/ProcessDescription.json",
+  "version": "1.0.0",
+  "jobControlOptions": [
+    "sync-execute"
+  ],
+  "outputTransmission": [
+    "value"
+  ],
+  "additionalParameters": {
+    "parameters": [
+      {
+        "name": "stagesCount",
+        "value": ["2"]
+      },
+      {
+        "name": "stage001Names",
+        "value": ["LIS"]
+      },
+      {
+        "name": "stage002Names",
+        "value": ["RRR", "RAPID"]
+      }
+    ]
+  },
+  "inputs": {
+    "executingStageFlags": {
+      "title": "mandatory input to describe which stages need to be executed",
+      "description": "Boolean array to indicate which stages to be executed. each array index corresponds to each stage which where the details can be found in #/additionalParameters/parameters. If missing or mismatched, a default value of 'TRUE' is used.",
+      "schema": {"$ref": "#/definitions/executingStageFlagsSchema"}
+    },
+    "stagedResults": {
+      "title": "Results from other or input processes",
+      "description": "This can be power Process result or LIS process result if starting from RRR",
+      "schema": {"$ref": "#/definitions/stagedResultsSchema"}
+    },
+    "scenario": {
+      "title": "TODO:",
+      "description": "TODO:",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "1x",
+          "2x",
+          "3x"
+        ]
+      }
+    },
+    "hydroModel": {
+      "title": "TODO:",
+      "description": "TODO:",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "VIC",
+          "NOAH"
+        ]
+      }
+    },
+    "precipitationType": {
+      "title": "TODO:",
+      "description": "TODO:",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "CHIRPS",
+          "MERRA2",
+          "IMERG"
+        ]
+      }
+    },
+    "basinId": {
+      "title": "MERIT-Basin ID",
+      "description": "The numerical ID used to denote a MERIT-Basin. Currently only supporting basins 23 (western Europe) and 74 (Mississippi)",
+      "schema": {
+        "type": "integer",
+        "enum": [23, 74]
+      }
+    },
+    "landSurfaceModel": {
+      "title": "Land Surface Model",
+      "description": "Land Surface Model used as input data for RAPID.",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "VIC",
+          "NOAH",
+          "NOAH_MP_1x",
+          "NOAH_MP_2x",
+          "NOAH_MP_3x",
+          "CLSM",
+          "LIS"
+        ]
+      }
+    },
+    "spatialResolution": {
+      "title": "TODO:",
+      "description": "TODO:. Example: 1, 2, 3, ...",
+      "schema": {
+        "type": "string"
+      }
+    },
+    "startTime": {
+      "title": "start time for the process",
+      "description": "start time for the process in date-time string",
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "endTime": {
+      "title": "end time for the process",
+      "description": "end time for the process in date-time string",
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "spatialCoverage": {
+      "title": "spatial coverage to be used for all the processes",
+      "description": "Bounding box is the only supported spatial coverage type for this workflow",
+      "schema": {"$ref": "#/definitions/spatialCoverageSchema"}
+    }
+  },
+  "outputs": {
+    "processResults": {
+      "title": "Results from each stage in the workflow",
+      "description": "This can be power Process result or LIS process result if starting from RRR",
+      "schema": {
+        "type": "array",
+        "items": {"$ref":  "#/definitions/processResultsSchema"}
+      }
+    }
+  },
+  "definitions": {
+    "executingStageFlagsSchema": {
+      "type": "array",
+      "description": "This is an array to describe whether to execute each stage of the workflow. As this workflow as 2 stages, the length is 2.",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "boolean"
+      }
+    },
+    "stagedResultsSchema":{
+      "type": "array",
+      "description": "This is where previous and external stage results will be added so that they can be used in current workflow. ",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "It is the name of the stage. a specific datatype can be appended if needed. example: LIS___data"
+          },
+          "value": {
+            "type": "string",
+            "description": "usualy a URL like S3 URL where the file is stored"
+          }
+        }
+      }
+    },
+    "spatialCoverageSchema": {
+      "type": "object",
+      "description": "This is the OGC definition of bbox. Pls follow this definition when providing bbox as an input",
+      "required": [
+        "bbox"
+      ],
+      "properties": {
+        "bbox": {
+          "bbox": {
+            "type": "array",
+            "oneOf": [
+              {
+                "maxItems": 4,
+                "minItems": 4,
+                "type": "object"
+              },
+              {
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "object"
+              }
+            ],
+            "items": {
+              "type": "number"
+            }
+          },
+          "crs": {
+            "type": "string",
+            "format": "uri",
+            "default": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+            "enum": [
+              "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+              "http://www.opengis.net/def/crs/OGC/0/CRS84h"
+            ]
+          }
+        }
+      }
+    },
+      "processResultsSchema": {
+      "type": "object",
+      "description": "This is how outputs from each stage is stored",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "It is the name of the stage. a specific datatype can be appended if needed. example: LIS___data"
+        },
+        "value": {
+          "type": "string",
+           "description": "usualy a URL like S3 URL where the file is stored"
+       }
+      }
+    }
+  },
+  "links": [
+    {
+      "href": "https://processing.example.org/oapi-p/processes/EchoProcess/execution",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/execute",
+      "title": "Execute endpoint"
+    }
+  ]
+}

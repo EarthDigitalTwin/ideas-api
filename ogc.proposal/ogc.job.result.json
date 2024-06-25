@@ -1,0 +1,16 @@
+{
+  "processResults": [
+    {
+      "name": "LIS. TODO not sure how to add data / metdata / ancillary info",
+      "value": "s3://<bucket>/<key>"
+    },
+    {
+      "name": "LIS",
+      "value": "s3://<bucket>/<key>"
+    },
+    {
+      "name": "LIS",
+      "value": "s3://<bucket>/<key>"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "ideas-api"
+version = "0.1.0"
+description = ""
+authors = ["Wai Phyo <wai.phyo@jpl.nasa.gov>"]
+readme = "README.md"
+packages = [{include = "ideas_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.89.1"
+python-dotenv = "^0.21.0"
+mangum = "^0.17.0"
+uvicorn = "^0.20.0"
+boto3 = "^1.26.51"
+elasticsearch = "7.11"
+requests-aws4auth = "^1.1.2"
+fastjsonschema = "^2.16.3"
+pyyaml = "^6.0"
+jsonschema = "^4.17.3"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
